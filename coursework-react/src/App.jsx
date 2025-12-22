@@ -1,12 +1,31 @@
 import propertiesData from "./data/properties.json";
+import SearchForm from "./components/SearchForm";
+import { useState } from "react";
+
 function App() {
-  const properties = propertiesData.properties;
+  const [filteredProperties, setFilteredProperties] = useState(
+    propertiesData.properties
+  );
+
+  function handleSearch(filters) {
+    let results = propertiesData.properties;
+
+    if (filters.type) {
+      results = results.filter(
+        (property) => property.type === filters.type
+      );
+    }
+
+    setFilteredProperties(results);
+  }
 
   return (
     <div style={{ padding: "20px" }}>
       <h1>Estate App</h1>
 
-      {properties.map((property) => (
+      <SearchForm onSearch={handleSearch} />
+
+      {filteredProperties.map((property) => (
         <div
           key={property.id}
           style={{
