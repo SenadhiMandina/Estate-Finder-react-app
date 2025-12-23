@@ -1,6 +1,6 @@
+import { useState } from "react";
 import propertiesData from "./data/properties.json";
 import SearchForm from "./components/SearchForm";
-import { useState } from "react";
 
 function App() {
   const [filteredProperties, setFilteredProperties] = useState(
@@ -16,6 +16,17 @@ function App() {
       );
     }
 
+    if (filters.minPrice) {
+      results = results.filter(
+        (property) => property.price >= Number(filters.minPrice)
+      );
+    }
+
+    if (filters.maxPrice) {
+      results = results.filter(
+        (property) => property.price <= Number(filters.maxPrice)
+      );
+    }
     setFilteredProperties(results);
   }
 
@@ -24,7 +35,6 @@ function App() {
       <h1>Estate App</h1>
 
       <SearchForm onSearch={handleSearch} />
-
       {filteredProperties.map((property) => (
         <div
           key={property.id}
@@ -35,9 +45,9 @@ function App() {
           }}
         >
           <h2>{property.type}</h2>
-          <p><strong>Location:</strong> {property.location}</p>
-          <p><strong>Bedrooms:</strong> {property.bedrooms}</p>
-          <p><strong>Price:</strong> £{property.price}</p>
+          <p>Location: {property.location}</p>
+          <p>Bedrooms: {property.bedrooms}</p>
+          <p>Price: £{property.price}</p>
         </div>
       ))}
     </div>
