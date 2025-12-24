@@ -11,9 +11,7 @@ function App() {
     let results = propertiesData.properties;
 
     if (filters.type) {
-      results = results.filter(
-        (property) => property.type === filters.type
-      );
+      results = results.filter((property) => property.type === filters.type);
     }
 
     if (filters.minPrice) {
@@ -27,6 +25,25 @@ function App() {
         (property) => property.price <= Number(filters.maxPrice)
       );
     }
+
+    if (filters.minBeds) {
+      results = results.filter(
+        (property) => property.bedrooms >= Number(filters.minBeds)
+      );
+    }
+
+    if (filters.maxBeds) {
+      results = results.filter(
+        (property) => property.bedrooms <= Number(filters.maxBeds)
+      );
+    }
+
+    if (filters.location) {
+      results = results.filter((property) =>
+        property.location.toLowerCase().includes(filters.location.toLowerCase())
+      );
+    }
+
     setFilteredProperties(results);
   }
 
@@ -35,6 +52,7 @@ function App() {
       <h1>Estate App</h1>
 
       <SearchForm onSearch={handleSearch} />
+
       {filteredProperties.map((property) => (
         <div
           key={property.id}

@@ -5,12 +5,19 @@ function SearchForm({ onSearch }) {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
 
+  const [minBeds, setMinBeds] = useState("");
+  const [maxBeds, setMaxBeds] = useState("");
+  const [location, setLocation] = useState("");
+
   function handleSubmit(e) {
-    e.preventDefault(); 
+    e.preventDefault();
     onSearch({
-      type: type,
-      minPrice: minPrice,
-      maxPrice: maxPrice
+      type,
+      minPrice,
+      maxPrice,
+      minBeds,
+      maxBeds,
+      location
     });
   }
 
@@ -44,6 +51,39 @@ function SearchForm({ onSearch }) {
           type="number"
           value={maxPrice}
           onChange={(e) => setMaxPrice(e.target.value)}
+        />
+      </label>
+
+      <br /><br />
+
+      <label>
+        Min Bedrooms:{" "}
+        <input
+          type="number"
+          value={minBeds}
+          onChange={(e) => setMinBeds(e.target.value)}
+        />
+      </label>
+
+      <br /><br />
+
+      <label>
+        Max Bedrooms:{" "}
+        <input
+          type="number"
+          value={maxBeds}
+          onChange={(e) => setMaxBeds(e.target.value)}
+        />
+      </label>
+
+      <br /><br />
+
+      <label>
+        Location/Postcode:{" "}
+        <input
+          type="text"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
         />
       </label>
 
