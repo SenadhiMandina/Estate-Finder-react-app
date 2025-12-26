@@ -1,2 +1,2 @@
 # coursework-react-app
-Client-side React estate agent web application for university coursework
+Client-side React web application for university coursework
