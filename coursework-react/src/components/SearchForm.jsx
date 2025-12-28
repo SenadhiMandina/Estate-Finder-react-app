@@ -7,16 +7,19 @@ function SearchForm({ onSearch }) {
   const [minBeds, setMinBeds] = useState("");
   const [maxBeds, setMaxBeds] = useState("");
   const [location, setLocation] = useState("");
+  const [addedAfter, setAddedAfter] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
+
     onSearch({
       type,
       minPrice,
       maxPrice,
       minBeds,
       maxBeds,
-      location
+      location,
+      addedAfter
     });
   }
 
@@ -27,6 +30,7 @@ function SearchForm({ onSearch }) {
     setMinBeds("");
     setMaxBeds("");
     setLocation("");
+    setAddedAfter("");
     onSearch({});
   }
 
@@ -93,6 +97,17 @@ function SearchForm({ onSearch }) {
           type="text"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
+        />
+      </label>
+
+      <br /><br />
+
+      <label>
+        Added After:{" "}
+        <input
+          type="date"
+          value={addedAfter}
+          onChange={(e) => setAddedAfter(e.target.value)}
         />
       </label>
 
