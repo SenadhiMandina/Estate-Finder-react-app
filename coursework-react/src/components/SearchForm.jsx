@@ -1,4 +1,10 @@
 import { useState } from "react";
+import {
+  DropdownList,
+  NumberPicker,
+  DatePicker,
+  Combobox
+} from "react-widgets";
 
 function SearchForm({ onSearch }) {
   const [type, setType] = useState("");
@@ -7,19 +13,24 @@ function SearchForm({ onSearch }) {
   const [minBeds, setMinBeds] = useState("");
   const [maxBeds, setMaxBeds] = useState("");
   const [location, setLocation] = useState("");
-  const [addedAfter, setAddedAfter] = useState("");
+
+  const [addedAfter, setAddedAfter] = useState(null);
+  const [addedBefore, setAddedBefore] = useState(null);
+
+  const propertyTypes = ["Any", "House", "Flat"];
 
   function handleSubmit(e) {
     e.preventDefault();
 
     onSearch({
-      type,
+      type: type === "Any" ? "" : type,
       minPrice,
       maxPrice,
       minBeds,
       maxBeds,
       location,
-      addedAfter
+      addedAfter,
+      addedBefore
     });
   }
 
@@ -30,88 +41,97 @@ function SearchForm({ onSearch }) {
     setMinBeds("");
     setMaxBeds("");
     setLocation("");
-    setAddedAfter("");
+    setAddedAfter(null);
+    setAddedBefore(null);
     onSearch({});
   }
 
   return (
     <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
+      <br />
       <label>
         Property Type:{" "}
-        <select value={type} onChange={(e) => setType(e.target.value)}>
-          <option value="">Any</option>
-          <option value="House">House</option>
-          <option value="Flat">Flat</option>
-        </select>
+        <DropdownList
+          data={propertyTypes}
+          value={type === "" ? "Any" : type}
+          onChange={(value) => setType(value === "Any" ? "" : value)}
+        />
       </label>
 
-      <br /><br />
+      <br />
 
       <label>
         Min Price:{" "}
-        <input
-          type="number"
-          value={minPrice}
-          onChange={(e) => setMinPrice(e.target.value)}
+        <NumberPicker
+          value={minPrice === "" ? null : Number(minPrice)}
+          onChange={(value) => setMinPrice(value == null ? "" : String(value))}
+          min={0}
+          step={1000}
         />
       </label>
 
-      <br /><br />
+      <br />
 
       <label>
         Max Price:{" "}
-        <input
-          type="number"
-          value={maxPrice}
-          onChange={(e) => setMaxPrice(e.target.value)}
+        <NumberPicker
+          value={maxPrice === "" ? null : Number(maxPrice)}
+          onChange={(value) => setMaxPrice(value == null ? "" : String(value))}
+          min={0}
+          step={1000}
         />
       </label>
 
-      <br /><br />
+      <br />
 
       <label>
         Min Bedrooms:{" "}
-        <input
-          type="number"
-          value={minBeds}
-          onChange={(e) => setMinBeds(e.target.value)}
+        <NumberPicker
+          value={minBeds === "" ? null : Number(minBeds)}
+          onChange={(value) => setMinBeds(value == null ? "" : String(value))}
+          min={0}
+          step={1}
         />
       </label>
 
-      <br /><br />
+      <br />
 
       <label>
         Max Bedrooms:{" "}
-        <input
-          type="number"
-          value={maxBeds}
-          onChange={(e) => setMaxBeds(e.target.value)}
+        <NumberPicker
+          value={maxBeds === "" ? null : Number(maxBeds)}
+          onChange={(value) => setMaxBeds(value == null ? "" : String(value))}
+          min={0}
+          step={1}
         />
       </label>
 
-      <br /><br />
+      <br />
 
       <label>
         Location/Postcode:{" "}
-        <input
-          type="text"
+        <Combobox
           value={location}
-          onChange={(e) => setLocation(e.target.value)}
+          onChange={(value) => setLocation(value || "")}
+          placeholder="Type a location..."
         />
       </label>
 
-      <br /><br />
+      <br />
 
       <label>
         Added After:{" "}
-        <input
-          type="date"
-          value={addedAfter}
-          onChange={(e) => setAddedAfter(e.target.value)}
-        />
+        <DatePicker value={addedAfter} onChange={setAddedAfter} />
       </label>
 
-      <br /><br />
+      <br />
+
+      <label>
+        Added Before:{" "}
+        <DatePicker value={addedBefore} onChange={setAddedBefore} />
+      </label>
+
+      <br />
 
       <button type="submit">Search</button>
 
