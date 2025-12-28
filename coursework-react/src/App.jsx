@@ -79,9 +79,7 @@ function App() {
       <div style={{ padding: "20px" }}>
         <h1>Favourites</h1>
 
-        <button onClick={() => setShowFavourites(false)}>
-          Back to Search
-        </button>
+        <button onClick={() => setShowFavourites(false)}>Back to Search</button>
 
         <p>Total favourites: {favourites.length}</p>
 
@@ -98,9 +96,31 @@ function App() {
               }}
             >
               <h2>{property.type}</h2>
-              <p>Location: {property.location}</p>
-              <p>Bedrooms: {property.bedrooms}</p>
-              <p>Price: £{property.price}</p>
+
+              <p style={{ fontSize: "18px", fontWeight: "bold" }}>
+                £{property.price.toLocaleString()}
+              </p>
+
+              <p>
+                <strong>Bedrooms:</strong> {property.bedrooms} |{" "}
+                <strong>Tenure:</strong> {property.tenure}
+              </p>
+
+              <p>
+                <strong>Location:</strong> {property.location}
+              </p>
+
+              <p>
+                <strong>Added:</strong> {property.added.month}{" "}
+                {property.added.day}, {property.added.year}
+              </p>
+
+              <p>
+                {property.description
+                  .replace(/<br\s*\/?>/gi, " ")
+                  .slice(0, 160)}
+                ...
+              </p>
 
               <button onClick={() => removeFromFavourites(property.id)}>
                 Remove
@@ -145,9 +165,31 @@ function App() {
             }}
           >
             <h2>{property.type}</h2>
-            <p>Location: {property.location}</p>
-            <p>Bedrooms: {property.bedrooms}</p>
-            <p>Price: £{property.price}</p>
+
+            <p style={{ fontSize: "18px", fontWeight: "bold" }}>
+              £{property.price.toLocaleString()}
+            </p>
+
+            <p>
+              <strong>Bedrooms:</strong> {property.bedrooms} |{" "}
+              <strong>Tenure:</strong> {property.tenure}
+            </p>
+
+            <p>
+              <strong>Location:</strong> {property.location}
+            </p>
+
+            <p>
+              <strong>Added:</strong> {property.added.month} {property.added.day}
+              , {property.added.year}
+            </p>
+
+            <p>
+              {property.description
+                .replace(/<br\s*\/?>/gi, " ")
+                .slice(0, 160)}
+              ...
+            </p>
 
             <button onClick={() => setSelectedProperty(property)}>
               View Details

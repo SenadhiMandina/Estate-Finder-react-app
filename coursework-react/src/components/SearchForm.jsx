@@ -4,7 +4,6 @@ function SearchForm({ onSearch }) {
   const [type, setType] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-
   const [minBeds, setMinBeds] = useState("");
   const [maxBeds, setMaxBeds] = useState("");
   const [location, setLocation] = useState("");
@@ -19,6 +18,16 @@ function SearchForm({ onSearch }) {
       maxBeds,
       location
     });
+  }
+
+  function handleClear() {
+    setType("");
+    setMinPrice("");
+    setMaxPrice("");
+    setMinBeds("");
+    setMaxBeds("");
+    setLocation("");
+    onSearch({});
   }
 
   return (
@@ -90,6 +99,14 @@ function SearchForm({ onSearch }) {
       <br /><br />
 
       <button type="submit">Search</button>
+
+      <button
+        type="button"
+        onClick={handleClear}
+        style={{ marginLeft: "10px" }}
+      >
+        Clear
+      </button>
     </form>
   );
 }
