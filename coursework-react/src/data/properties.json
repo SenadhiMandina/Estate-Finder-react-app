@@ -1,20 +1,24 @@
 {
 	"properties": [
         {
-            "id":"prop1",
-			"type":"House",
-            "bedrooms":3,
-			"price":750000,
-			"tenure":"Freehold",
-			"description":"Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
-			"location":"Petts Wood Road, Petts Wood, Orpington BR5",
-			"picture":"images/prop1pic1small.jpg",
-			"url":"properties/prop1.html",
-            "added": {
-                "month":"October",
-                "day":12,
-                "year":2022
-            }
+            "id": "prop1",
+            "type": "House",
+            "bedrooms": 3,
+            "price": 750000,
+            "tenure": "Freehold",
+            "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
+            "location": "Petts Wood Road, Petts Wood, Orpington BR5",
+            "picture": "images/prop1.1.jpg",
+            "images": [
+                "images/prop1.1.jpg",
+                "images/prop1.2.jpg",
+                "images/prop1.3.png",
+                "images/prop1.4.png",
+                "images/prop1.5.png",
+                "images/prop1.6.png"
+            ],
+            "url": "properties/prop1.html",
+            "added": { "month": "October", "day": 12, "year": 2022 }
         },
 		{
             "id":"prop2",
@@ -24,7 +28,15 @@
 			"tenure":"Freehold",
 			"description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms.<br>This apartment being only five years old, is still under a 10 year building guarantee...",
 			"location":"Crofton Road Orpington BR6",
-			"picture":"images/prop2pic1small.jpg",
+			"picture":"images/prop2.1.jpg",
+            "images":[
+                "images/prop2.1.jpg",
+                "images/prop2.2.png",
+                "images/prop2.3.png",
+                "images/prop2.4.png",
+                "images/prop2.5.png",
+                "images/prop2.6.png"
+            ],
 			"url":"properties/prop2.html",
             "added": {
                 "month":"September",
@@ -40,7 +52,15 @@
             "tenure": "Freehold",
             "description": "Four-bedroom family house with driveway parking, open-plan kitchen/dining and a private garden.",
             "location": "Green Lane, Bromley BR1",
-            "picture": "images/prop3pic1small.jpg",
+            "picture": "images/prop3.1.jpg",
+            "images": [
+                "images/prop3.1.jpg",
+                "images/prop3.2.png",
+                "images/prop3.3.png",
+                "images/prop3.4.png",
+                "images/prop3.5.png",
+                "images/prop3.6.png"
+            ],
             "url": "properties/prop3.html",
             "added": { 
                 "month": "January", 
@@ -56,7 +76,15 @@
             "tenure": "Leasehold",
             "description": "Modern one-bedroom flat near transport links, with fitted kitchen and balcony.",
             "location": "Camden High Street, London NW1",
-            "picture": "images/prop4pic1small.jpg",
+            "picture": "images/prop4.1.jpg",
+            "images": [
+                "images/prop4.1.jpg",
+                "images/prop4.2.png",
+                "images/prop4.3.png",
+                "images/prop4.4.png",
+                "images/prop4.5.png",
+                "images/prop4.6.png"
+            ],
             "url": "properties/prop4.html",
             "added": { 
                 "month": "March", 
@@ -72,7 +100,15 @@
             "tenure": "Freehold",
             "description": "Two-bedroom house with refurbished bathroom, new flooring and a small rear garden.",
             "location": "High Street, Beckenham BR3",
-            "picture": "images/prop5pic1small.jpg",
+            "picture": "images/prop5.1.jpg",
+            "images": [
+                "images/prop5.1.jpg",
+                "images/prop5.2.png",
+                "images/prop5.3.png",
+                "images/prop5.4.png",
+                "images/prop5.5.png",
+                "images/prop5.6.png"
+            ],
             "url": "properties/prop5.html",
             "added": { 
                 "month": "July", 
@@ -88,7 +124,15 @@
             "tenure": "Leasehold",
             "description": "Spacious three-bedroom apartment with secure entry, allocated parking and city views.",
             "location": "City Centre, Manchester M1",
-            "picture": "images/prop6pic1small.jpg",
+            "picture": "images/prop6.1.jpg",
+            "images": [
+                "images/prop6.1.jpg",
+                "images/prop6.2.png",
+                "images/prop6.3.png",
+                "images/prop6.4.png",
+                "images/prop6.5.png",
+                "images/prop6.6.png"
+            ],
             "url": "properties/prop6.html",
             "added": { 
                 "month": "October", 
@@ -104,7 +148,15 @@
             "tenure": "Freehold",
             "description": "Large five-bedroom detached home with home office space, driveway and landscaped garden.",
             "location": "Park View, Leeds LS1",
-            "picture": "images/prop7pic1small.jpg",
+            "picture": "images/prop7.1.jpg",
+            "images": [
+                "images/prop7.1.jpg",
+                "images/prop7.2.png",
+                "images/prop7.3.png",
+                "images/prop7.4.png",
+                "images/prop7.5.png",
+                "images/prop7.6.png"
+            ],
             "url": "properties/prop7.html",
             "added": { 
                 "month": "November", 
