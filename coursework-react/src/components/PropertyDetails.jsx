@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 
 function PropertyDetails({ property, onBack }) {
   const allImages =
@@ -10,6 +12,10 @@ function PropertyDetails({ property, onBack }) {
 
   const [selectedImage, setSelectedImage] = useState(allImages[0] || "");
   const [showAll, setShowAll] = useState(false);
+
+  const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(
+    property.location
+  )}&output=embed`;
 
   return (
     <div style={{ padding: "20px" }}>
@@ -35,7 +41,6 @@ function PropertyDetails({ property, onBack }) {
 
       {selectedImage && (
         <div style={{ marginTop: "16px" }}>
-
           <img
             src={`/${selectedImage}`}
             alt="Main property"
@@ -148,9 +153,51 @@ function PropertyDetails({ property, onBack }) {
         </div>
       )}
 
-      <p style={{ marginTop: "16px", lineHeight: "1.6" }}>
-        {String(property.description || "").replace(/<br\s*\/?>/gi, " ")}
-      </p>
+      <div style={{ marginTop: "18px" }}>
+        <Tabs>
+          <TabList>
+            <Tab>Description</Tab>
+            <Tab>Floor plan</Tab>
+            <Tab>Google map</Tab>
+          </TabList>
+
+          <TabPanel>
+            <p style={{ lineHeight: "1.6" }}>
+              {String(property.description || "").replace(/<br\s*\/?>/gi, " ")}
+            </p>
+          </TabPanel>
+
+          <TabPanel>
+            {property.floorPlan ? (
+              <img
+                src={`/${property.floorPlan}`}
+                alt="Floor plan"
+                style={{
+                  width: "100%",
+                  maxWidth: "750px",
+                  borderRadius: "10px",
+                  border: "1px solid #ccc"
+                }}
+              />
+            ) : (
+              <p>No floor plan available.</p>
+            )}
+          </TabPanel>
+
+          <TabPanel>
+            <div style={{ width: "100%", maxWidth: "850px", height: "360px" }}>
+              <iframe
+                title="Google map"
+                src={mapUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                loading="lazy"
+              />
+            </div>
+          </TabPanel>
+        </Tabs>
+      </div>
     </div>
   );
 }

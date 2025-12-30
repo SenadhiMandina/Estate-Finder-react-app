@@ -9,7 +9,6 @@ function ImageGallery({ images = [] }) {
 
   return (
     <div style={{ marginTop: "12px" }}>
-      {/* Main image */}
       <img
         src={`/${selected}`}
         alt="Main"
@@ -24,7 +23,6 @@ function ImageGallery({ images = [] }) {
         }}
       />
 
-      {/* Thumbnails */}
       <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginTop: "10px" }}>
         {safeImages.map((img) => (
           <img
@@ -48,7 +46,6 @@ function ImageGallery({ images = [] }) {
         View all images
       </button>
 
-      {/* View all modal */}
       {showAll && (
         <div
           onClick={() => setShowAll(false)}

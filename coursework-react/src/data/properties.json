@@ -17,8 +17,12 @@
                 "images/prop1.5.png",
                 "images/prop1.6.png"
             ],
+            "floorPlan": "images/prop1.floorplan.png",
             "url": "properties/prop1.html",
-            "added": { "month": "October", "day": 12, "year": 2022 }
+            "added": { 
+                "month": "October", 
+                "day": 12, 
+                "year": 2022 }
         },
 		{
             "id":"prop2",
@@ -37,6 +41,7 @@
                 "images/prop2.5.png",
                 "images/prop2.6.png"
             ],
+            "floorPlan": "images/prop2.floorplan.png",
 			"url":"properties/prop2.html",
             "added": {
                 "month":"September",
@@ -50,8 +55,8 @@
             "bedrooms": 4,
             "price": 625000,
             "tenure": "Freehold",
-            "description": "Four-bedroom family house with driveway parking, open-plan kitchen/dining and a private garden.",
-            "location": "Green Lane, Bromley BR1",
+            "description": "Spacious four-bedroom family home in a quiet residential area, offering a bright front reception room and a modern open-plan kitchen/dining space ideal for entertaining. Upstairs includes four well-sized bedrooms and a family bathroom, with the main bedroom benefiting from fitted storage. The property also features driveway parking, double glazing, gas central heating and a private rear garden with patio area. Conveniently located close to local shops, schools and transport links, making it perfect for families and commuters.",
+            "location": "Maple Avenue, Croydon CR0",
             "picture": "images/prop3.1.jpg",
             "images": [
                 "images/prop3.1.jpg",
@@ -61,6 +66,7 @@
                 "images/prop3.5.png",
                 "images/prop3.6.png"
             ],
+            "floorPlan": "images/prop3.floorplan.png",
             "url": "properties/prop3.html",
             "added": { 
                 "month": "January", 
@@ -74,8 +80,8 @@
             "bedrooms": 1,
             "price": 275000,
             "tenure": "Leasehold",
-            "description": "Modern one-bedroom flat near transport links, with fitted kitchen and balcony.",
-            "location": "Camden High Street, London NW1",
+            "description": "Well-presented modern one-bedroom flat set in a convenient location close to public transport and local amenities. The apartment offers an open-plan living/kitchen area with integrated appliances, a comfortable double bedroom with storage, and a clean contemporary bathroom suite. Additional benefits include secure entry, good natural light throughout and an ideal layout for first-time buyers or investors. Excellent access to shops, restaurants and commuter routes.",
+            "location": "Park View, Leeds LS1",
             "picture": "images/prop4.1.jpg",
             "images": [
                 "images/prop4.1.jpg",
@@ -85,6 +91,7 @@
                 "images/prop4.5.png",
                 "images/prop4.6.png"
             ],
+            "floorPlan": "images/prop4.floorplan.png",
             "url": "properties/prop4.html",
             "added": { 
                 "month": "March", 
@@ -98,8 +105,8 @@
             "bedrooms": 2,
             "price": 410000,
             "tenure": "Freehold",
-            "description": "Two-bedroom house with refurbished bathroom, new flooring and a small rear garden.",
-            "location": "High Street, Beckenham BR3",
+            "description": "Charming two-bedroom house finished to a good standard throughout, featuring a welcoming living room and a practical kitchen with space for dining. Upstairs offers two bedrooms and a refurbished family bathroom, while outside benefits from a low-maintenance private rear garden. Further features include double glazing, gas central heating and recently updated flooring. Situated within easy reach of local shops, schools and transport links, making this a great option for small families or professionals.",
+            "location": "Park View, Leeds LS1",
             "picture": "images/prop5.1.jpg",
             "images": [
                 "images/prop5.1.jpg",
@@ -109,6 +116,7 @@
                 "images/prop5.5.png",
                 "images/prop5.6.png"
             ],
+            "floorPlan": "images/prop5.floorplan.png",
             "url": "properties/prop5.html",
             "added": { 
                 "month": "July", 
@@ -122,8 +130,8 @@
             "bedrooms": 3,
             "price": 520000,
             "tenure": "Leasehold",
-            "description": "Spacious three-bedroom apartment with secure entry, allocated parking and city views.",
-            "location": "City Centre, Manchester M1",
+            "description": "Large three-bedroom apartment with a spacious layout and excellent city access. The property includes a generous living area, a modern fitted kitchen, three good-sized bedrooms and a well-maintained bathroom suite. Additional benefits include secure entry, allocated parking, double glazing and great natural light with pleasant views. Located close to shops, restaurants and public transport, making it ideal for professionals, sharers or families wanting a convenient lifestyle.",
+            "location": "Park View, Leeds LS1",
             "picture": "images/prop6.1.jpg",
             "images": [
                 "images/prop6.1.jpg",
@@ -133,6 +141,7 @@
                 "images/prop6.5.png",
                 "images/prop6.6.png"
             ],
+            "floorPlan": "images/prop6.floorplan.png",
             "url": "properties/prop6.html",
             "added": { 
                 "month": "October", 
@@ -146,8 +155,8 @@
             "bedrooms": 5,
             "price": 845000,
             "tenure": "Freehold",
-            "description": "Large five-bedroom detached home with home office space, driveway and landscaped garden.",
-            "location": "Park View, Leeds LS1",
+            "description": "Impressive five-bedroom detached family home offering flexible living space across two floors. The ground floor features a bright reception room, a large kitchen/dining area, and additional space suitable for a home office or playroom. Upstairs includes five bedrooms and a family bathroom, with the main bedroom benefiting from fitted wardrobes. Outside offers driveway parking and a landscaped rear garden ideal for relaxing or entertaining. Well positioned near local amenities, schools and transport links.",
+            "location": "Petts Wood Road",
             "picture": "images/prop7.1.jpg",
             "images": [
                 "images/prop7.1.jpg",
@@ -157,6 +166,7 @@
                 "images/prop7.5.png",
                 "images/prop7.6.png"
             ],
+            "floorPlan": "images/prop7.floorplan.png",
             "url": "properties/prop7.html",
             "added": { 
                 "month": "November", 
