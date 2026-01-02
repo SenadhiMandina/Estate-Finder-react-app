@@ -19,21 +19,17 @@ function PropertyDetails({ property, onBack }) {
 
   return (
     <div style={{ padding: "20px" }}>
-      <button onClick={onBack}>← Back</button>
+      <button className="btnPrimary" onClick={onBack}>← Back</button>
 
       <h2 style={{ marginTop: "12px" }}>
         {property.type} — £{property.price.toLocaleString()}
       </h2>
 
-      <p>
-        <strong>Location:</strong> {property.location}
-      </p>
-
+      <p><strong>Location:</strong> {property.location}</p>
       <p>
         <strong>Bedrooms:</strong> {property.bedrooms} |{" "}
         <strong>Tenure:</strong> {property.tenure}
       </p>
-
       <p>
         <strong>Added:</strong> {property.added.month} {property.added.day},{" "}
         {property.added.year}
@@ -55,14 +51,7 @@ function PropertyDetails({ property, onBack }) {
             }}
           />
 
-          <div
-            style={{
-              display: "flex",
-              gap: "10px",
-              flexWrap: "wrap",
-              marginTop: "12px"
-            }}
-          >
+          <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginTop: "12px" }}>
             {allImages.map((img, index) => (
               <img
                 key={index}
@@ -75,16 +64,13 @@ function PropertyDetails({ property, onBack }) {
                   objectFit: "cover",
                   borderRadius: "8px",
                   cursor: "pointer",
-                  border:
-                    selectedImage === img
-                      ? "3px solid #00bcd4"
-                      : "1px solid #aaa"
+                  border: selectedImage === img ? "3px solid #ff8a3d" : "1px solid #aaa"
                 }}
               />
             ))}
           </div>
 
-          <button style={{ marginTop: "12px" }} onClick={() => setShowAll(true)}>
+          <button className="btnPrimary" style={{ marginTop: "12px" }} onClick={() => setShowAll(true)}>
             View all images
           </button>
 
@@ -114,15 +100,9 @@ function PropertyDetails({ property, onBack }) {
                   overflow: "auto"
                 }}
               >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center"
-                  }}
-                >
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <h3 style={{ margin: 0 }}>All images</h3>
-                  <button onClick={() => setShowAll(false)}>Close</button>
+                  <button className="btnDanger" onClick={() => setShowAll(false)}>Close</button>
                 </div>
 
                 <div
