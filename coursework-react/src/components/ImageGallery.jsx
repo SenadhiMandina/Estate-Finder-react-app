@@ -1,99 +1,83 @@
-import { useState } from "react";
+import React, { useMemo, useState } from "react";
 
-function ImageGallery({ images = [] }) {
-  const safeImages = images.filter(Boolean);
-  const [selected, setSelected] = useState(safeImages[0] || "");
-  const [showAll, setShowAll] = useState(false);
+function ImageGallery({ images = [], altBase = "Property image" }) {
+  const safeImages = useMemo(
+    () => (Array.isArray(images) ? images.filter(Boolean) : []),
+    [images]
+  );
 
-  if (safeImages.length === 0) return null;
+  const [active, setActive] = useState(0);
+  const [open, setOpen] = useState(false);
+
+  const main = safeImages[active] || "";
+
+  if (!safeImages.length) {
+    return (
+      <div className="panel">
+        <p>No images available.</p>
+      </div>
+    );
+  }
 
   return (
-    <div style={{ marginTop: "12px" }}>
-      <img
-        src={`/${selected}`}
-        alt="Main"
-        style={{
-          width: "100%",
-          maxWidth: "750px",
-          height: "380px",
-          objectFit: "cover",
-          borderRadius: "10px",
-          border: "1px solid #ccc",
-          display: "block"
-        }}
-      />
+    <div>
+      <img className="galleryMain" src={`/${main}`} alt={`${altBase} ${active + 1}`} />
 
-      <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginTop: "10px" }}>
-        {safeImages.map((img) => (
+      <div className="thumbRow" aria-label="Image thumbnails">
+        {safeImages.map((img, i) => (
           <img
-            key={img}
+            key={img + i}
+            className={"thumbImg " + (i === active ? "active" : "")}
             src={`/${img}`}
-            alt="Thumb"
-            onClick={() => setSelected(img)}
-            style={{
-              width: "90px",
-              height: "70px",
-              objectFit: "cover",
-              borderRadius: "8px",
-              cursor: "pointer",
-              border: selected === img ? "3px solid #00bcd4" : "1px solid #aaa"
-            }}
+            alt={`${altBase} thumbnail ${i + 1}`}
+            onClick={() => setActive(i)}
           />
         ))}
       </div>
 
-      <button style={{ marginTop: "10px" }} onClick={() => setShowAll(true)}>
-        View all images
-      </button>
+      <div className="formActions">
+        <button className="btn" onClick={() => setOpen(true)}>
+          View all images
+        </button>
+      </div>
 
-      {showAll && (
+      {open && (
         <div
-          onClick={() => setShowAll(false)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.75)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: "20px",
-            zIndex: 9999
-          }}
+          className="modalOverlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="All images"
+          onClick={() => setOpen(false)}
         >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              background: "#fff",
-              padding: "16px",
-              borderRadius: "12px",
-              width: "100%",
-              maxWidth: "900px",
-              maxHeight: "80vh",
-              overflow: "auto"
-            }}
-          >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <h3 style={{ margin: 0 }}>All images</h3>
-              <button onClick={() => setShowAll(false)}>Close</button>
+          <div className="modalCard" onClick={(e) => e.stopPropagation()}>
+            <div className="modalTop">
+              <h3 className="h2 m0">
+                All images ({safeImages.length})
+              </h3>
+
+              <button className="btn btnSmall" onClick={() => setOpen(false)}>
+                Close
+              </button>
             </div>
 
-            <div
-              style={{
-                marginTop: "12px",
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-                gap: "10px"
-              }}
-            >
-              {safeImages.map((img) => (
+            <div className="modalGrid">
+              {safeImages.map((img, i) => (
                 <img
-                  key={img}
+                  key={img + i}
                   src={`/${img}`}
-                  alt="All"
-                  style={{ width: "100%", height: "140px", objectFit: "cover", borderRadius: "10px" }}
+                  alt={`${altBase} ${i + 1}`}
+                  className="clickable"
+                  onClick={() => {
+                    setActive(i);
+                    setOpen(false);
+                  }}
                 />
               ))}
             </div>
+
+            <p className="favHint mt10">
+              Tip: click any image to make it the main image.
+            </p>
           </div>
         </div>
       )}

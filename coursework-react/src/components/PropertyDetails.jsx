@@ -1,182 +1,112 @@
-import { useState } from "react";
+import React, { useMemo } from "react";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import ImageGallery from "./ImageGallery";
 
-function PropertyDetails({ property, onBack }) {
-  const allImages =
-    property.images && property.images.length > 0
-      ? property.images
-      : property.picture
-      ? [property.picture]
-      : [];
+function formatGBP(value) {
+  const num = Number(value);
+  if (!Number.isFinite(num)) return "£0";
+  return "£" + num.toLocaleString();
+}
 
-  const [selectedImage, setSelectedImage] = useState(allImages[0] || "");
-  const [showAll, setShowAll] = useState(false);
+function cleanText(value) {
+  return String(value || "").replace(/<br\s*\/?>/gi, " ").trim();
+}
 
-  const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(
-    property.location
-  )}&output=embed`;
+function PropertyDetails({ property, onBack, onFavourite, isFavourite }) {
+  const images = useMemo(() => {
+    if (Array.isArray(property.images) && property.images.length) return property.images;
+    if (property.picture) return [property.picture];
+    return [];
+  }, [property]);
+
+  const mapUrl = useMemo(() => {
+    return `https://www.google.com/maps?q=${encodeURIComponent(property.location)}&output=embed`;
+  }, [property.location]);
+
+  const longDescription = cleanText(property.description);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <button className="btnPrimary" onClick={onBack}>← Back</button>
-
-      <h2 style={{ marginTop: "12px" }}>
-        {property.type} — £{property.price.toLocaleString()}
-      </h2>
-
-      <p><strong>Location:</strong> {property.location}</p>
-      <p>
-        <strong>Bedrooms:</strong> {property.bedrooms} |{" "}
-        <strong>Tenure:</strong> {property.tenure}
-      </p>
-      <p>
-        <strong>Added:</strong> {property.added.month} {property.added.day},{" "}
-        {property.added.year}
-      </p>
-
-      {selectedImage && (
-        <div style={{ marginTop: "16px" }}>
-          <img
-            src={`/${selectedImage}`}
-            alt="Main property"
-            style={{
-              width: "100%",
-              maxWidth: "750px",
-              height: "380px",
-              objectFit: "cover",
-              borderRadius: "10px",
-              border: "1px solid #ccc",
-              display: "block"
-            }}
-          />
-
-          <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginTop: "12px" }}>
-            {allImages.map((img, index) => (
-              <img
-                key={index}
-                src={`/${img}`}
-                alt={`Thumbnail ${index + 1}`}
-                onClick={() => setSelectedImage(img)}
-                style={{
-                  width: "90px",
-                  height: "70px",
-                  objectFit: "cover",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                  border: selectedImage === img ? "3px solid #ff8a3d" : "1px solid #aaa"
-                }}
-              />
-            ))}
-          </div>
-
-          <button className="btnPrimary" style={{ marginTop: "12px" }} onClick={() => setShowAll(true)}>
-            View all images
+    <div className="panel">
+      <div className="detailsTop">
+        <div>
+          <button className="btn btnGhost" onClick={onBack}>
+            ← Back to results
           </button>
 
-          {showAll && (
-            <div
-              onClick={() => setShowAll(false)}
-              style={{
-                position: "fixed",
-                inset: 0,
-                background: "rgba(0,0,0,0.75)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: "20px",
-                zIndex: 9999
-              }}
-            >
-              <div
-                onClick={(e) => e.stopPropagation()}
-                style={{
-                  background: "#fff",
-                  padding: "16px",
-                  borderRadius: "12px",
-                  width: "100%",
-                  maxWidth: "900px",
-                  maxHeight: "80vh",
-                  overflow: "auto"
-                }}
-              >
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <h3 style={{ margin: 0 }}>All images</h3>
-                  <button className="btnDanger" onClick={() => setShowAll(false)}>Close</button>
-                </div>
+          <h1 className="detailsTitle">
+            {property.type} in {property.location}
+          </h1>
 
-                <div
-                  style={{
-                    marginTop: "12px",
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-                    gap: "10px"
-                  }}
-                >
-                  {allImages.map((img, i) => (
-                    <img
-                      key={i}
-                      src={`/${img}`}
-                      alt={`Image ${i + 1}`}
-                      style={{
-                        width: "100%",
-                        height: "140px",
-                        objectFit: "cover",
-                        borderRadius: "10px"
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
+          <div className="metaRow">
+            <span className="badge">{formatGBP(property.price)}</span>
+            <span><b>{property.bedrooms}</b> bedrooms</span>
+            <span><b>{property.tenure}</b></span>
+            <span>
+              Added <b>{property.added?.month}</b> {property.added?.day}, {property.added?.year}
+            </span>
+          </div>
         </div>
-      )}
 
-      <div style={{ marginTop: "18px" }}>
-        <Tabs>
-          <TabList>
-            <Tab>Description</Tab>
-            <Tab>Floor plan</Tab>
-            <Tab>Google map</Tab>
-          </TabList>
+        <button
+          className={"btn " + (isFavourite ? "" : "btnPrimary")}
+          onClick={() => onFavourite(property)}
+          disabled={isFavourite}
+          title={isFavourite ? "Already in favourites" : "Add to favourites"}
+        >
+          {isFavourite ? "Favourited ✅" : "❤️ Add to favourites"}
+        </button>
+      </div>
 
-          <TabPanel>
-            <p style={{ lineHeight: "1.6" }}>
-              {String(property.description || "").replace(/<br\s*\/?>/gi, " ")}
-            </p>
-          </TabPanel>
+      <div className="detailsGrid">
+        <div>
+          <ImageGallery images={images} altBase={`${property.type} image`} />
 
-          <TabPanel>
-            {property.floorPlan ? (
-              <img
-                src={`/${property.floorPlan}`}
-                alt="Floor plan"
-                style={{
-                  width: "100%",
-                  maxWidth: "750px",
-                  borderRadius: "10px",
-                  border: "1px solid #ccc"
-                }}
-              />
-            ) : (
-              <p>No floor plan available.</p>
-            )}
-          </TabPanel>
+          <div className="tabsPanel">
+            <Tabs>
+              <TabList>
+                <Tab>Description</Tab>
+                <Tab>Floor plan</Tab>
+                <Tab>Google map</Tab>
+              </TabList>
 
-          <TabPanel>
-            <div style={{ width: "100%", maxWidth: "850px", height: "360px" }}>
-              <iframe
-                title="Google map"
-                src={mapUrl}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                loading="lazy"
-              />
-            </div>
-          </TabPanel>
-        </Tabs>
+              <TabPanel>
+                <p className="longText">{longDescription}</p>
+              </TabPanel>
+
+              <TabPanel>
+                {property.floorPlan ? (
+                  <img
+                    className="floorPlanImg"
+                    src={`/${property.floorPlan}`}
+                    alt="Floor plan"
+                  />
+                ) : (
+                  <p>No floor plan available.</p>
+                )}
+              </TabPanel>
+
+              <TabPanel>
+                <div className="mapBox" aria-label="Google map">
+                  <iframe title="Google map" src={mapUrl} loading="lazy" />
+                </div>
+              </TabPanel>
+            </Tabs>
+          </div>
+        </div>
+
+        <aside className="detailsAside">
+          <h2 className="h2">Key details</h2>
+
+          <p className="kv"><b>Price:</b> {formatGBP(property.price)}</p>
+          <p className="kv"><b>Bedrooms:</b> {property.bedrooms}</p>
+          <p className="kv"><b>Tenure:</b> {property.tenure}</p>
+          <p className="kv"><b>Added:</b> {property.added?.month} {property.added?.day}, {property.added?.year}</p>
+
+          <p className="favHint">
+            Tip: drag this property from the results list into the favourites panel on the search page.
+          </p>
+        </aside>
       </div>
     </div>
   );
